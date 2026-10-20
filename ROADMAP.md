@@ -8,18 +8,18 @@ A standalone PHP ETL application for processing 1.28 million UK Land Registry pr
 - [x] Initialise Git and Composer.
 - [x] Configure Symfony Console.
 - [x] Download Land Registry CSV.
-- [ ] Document installation and usage.
+- [x] Document installation and usage.
 
 ## 2. CSV Reader
-- [ ] Implement streaming CSV reader.
-- [ ] Validate CSV structure.
-- [ ] Add `app:inspect` command.
-- [ ] Measure execution time and memory usage.
+- [x] Implement streaming CSV reader.
+- [x] Validate CSV structure.
+- [x] Add `app:inspect` command.
+- [x] Measure execution time and memory usage.
 
 ## 3. Data Processing
-- [ ] Validate property records.
-- [ ] Normalise and transform data.
-- [ ] Handle invalid records.
+- [x] Validate property records.
+- [x] Normalise and transform data.
+- [x] Handle invalid records.
 
 ## 4. Data Storage
 - [ ] Implement SQLite writer.
