@@ -7,7 +7,7 @@ A standalone PHP ETL application for processing UK Land Registry property sales 
 ## Installation
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/property-analyser.git
+git clone https://github.com/alexredko10/property-analyser.git
 cd property-analyser
 composer install
 ```
@@ -36,32 +36,19 @@ The dataset is excluded from Git. Contains HM Land Registry data © Crown copyri
 # List available commands
 php bin/console list
 
-# Inspect CSV (planned)
+# Inspect CSV
 php bin/console app:inspect data/pp-2021.csv
 
-# Process records (planned)
+# Import records into SQLite
 php bin/console app:import data/pp-2021.csv --batch-size=1000
 
-# Reconcile results (planned)
+# Reconcile results
 php bin/console app:reconcile
 ```
 
-Currently, `app:reconcile` is a placeholder. Other commands will be implemented during development.
+Imports are stored in `data/properties.sqlite`. Re-running an import resumes after the last committed batch for the same source file.
 
-## Development
-
-```bash
-# Create feature branch
-git switch -c feature/csv-reader
-
-# Commit changes
-git add .
-git commit -m "feat: implement CSV reader"
-
-# Merge into main
-git switch main
-git merge --no-ff feature/csv-reader
-```
+`app:reconcile` compares the record count and total sale price in `data/pp-2021.csv` with the stored records.
 
 ## Architecture
 
@@ -70,10 +57,6 @@ git merge --no-ff feature/csv-reader
 The pipeline uses streaming, batch processing and checkpointing to support large datasets and reliable recovery.
 
 See [ROADMAP.md](ROADMAP.md) for implementation progress.
-
-## AI Usage
-
-AI assistance was used for planning, documentation suggestions. All implementation and testing results are subject to developer verification.
 
 ## Performance
 

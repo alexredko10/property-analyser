@@ -22,21 +22,21 @@ A standalone PHP ETL application for processing 1.28 million UK Land Registry pr
 - [x] Handle invalid records.
 
 ## 4. Data Storage
-- [ ] Implement SQLite writer.
-- [ ] Add batch processing.
-- [ ] Support checkpoints and retries.
-- [ ] Add `app:import` command.
+- [x] Implement SQLite writer.
+- [x] Add batch processing.
+- [x] Support checkpoints and retries.
+- [x] Add `app:import` command.
 
 ## 5. Reconciliation
-- [ ] Compare source and destination counts.
-- [ ] Verify data integrity.
-- [ ] Report processing errors.
+- [x] Compare source and destination counts.
+- [x] Verify data integrity.
+- [x] Report processing errors.
 
 ## 6. Testing & Documentation
-- [ ] Add unit and integration tests.
-- [ ] Benchmark with 1M+ records.
-- [ ] Document architecture and scalability.
-- [ ] Update README with setup instructions.
+- [x] Add unit and integration tests.
+- [x] Benchmark with 1M+ records.
+- [x] Document architecture and scalability.
+- [x] Update README with setup instructions.
 
 ## Acceptance Criteria
 - Process 1M+ records with bounded memory usage.
