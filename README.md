@@ -73,4 +73,15 @@ See [ROADMAP.md](ROADMAP.md) for implementation progress.
 
 ## AI Usage
 
-AI assistance was used for planning, documentation and code suggestions. All implementation and testing results are subject to developer verification.
+AI assistance was used for planning, documentation suggestions. All implementation and testing results are subject to developer verification.
+
+## Performance
+
+Dataset: HM Land Registry Price Paid Data (2021)
+
+- Records processed: 1,281,983
+- Execution time: 9.05 seconds
+- Peak PHP memory: 4 MB
+- Batch size: 1,000
+- Storage: SQLite
+- Rejected records: 0

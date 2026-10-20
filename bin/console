@@ -8,6 +8,7 @@ use App\Command\InspectCommand;
 use App\Command\ReconcileCommand;
 use App\Reader\CsvReader;
 use Symfony\Component\Console\Application;
+use App\Command\ImportCommand;
 
 $application = new Application('PropertyAnalyser', '1.0.0');
 
@@ -16,5 +17,5 @@ $application->addCommand(new InspectCommand(
 ));
 
 $application->addCommand(new ReconcileCommand());
-
+$application->addCommand(new ImportCommand());
 exit($application->run());
