@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Command;
 
+use App\Logging\LoggerFactory;
 use PDO;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -22,6 +23,7 @@ final class ReconcileCommand extends Command
     ): int {
         $file = dirname(__DIR__, 2) . '/data/pp-2021.csv';
         $database = dirname(__DIR__, 2) . '/data/properties.sqlite';
+        $logger = LoggerFactory::create();
 
         if (!is_file($file) || !is_file($database)) {
             $output->writeln('<error>Source or database missing</error>');
@@ -65,7 +67,17 @@ final class ReconcileCommand extends Command
 
         $passed = $sourceCount === $storedCount
             && $sourceTotal === $storedTotal;
-
+        $logger->log(
+            $passed ? 'info' : 'error',
+            'Reconciliation completed',
+            [
+                'source_records' => $sourceCount,
+                'stored_records' => $storedCount,
+                'source_total' => $sourceTotal,
+                'stored_total' => $storedTotal,
+                'status' => $passed ? 'PASS' : 'FAIL',
+            ]
+        );
         $output->writeln([
             'Reconciliation Report',
             '---------------------',
