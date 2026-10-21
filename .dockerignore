@@ -1,0 +1,6 @@
+.git
+.idea
+vendor
+data/*
+!data/.gitkeep
+*.log

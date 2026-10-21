@@ -58,13 +58,41 @@ The pipeline uses streaming, batch processing and checkpointing to support large
 
 See [ROADMAP.md](ROADMAP.md) for implementation progress.
 
-## Performance
+## Naive vs Modular Implementation
 
-Dataset: HM Land Registry Price Paid Data (2021)
+The project includes two approaches to processing the same HM Land Registry dataset.
 
-- Records processed: 1,281,983
-- Execution time: 9.05 seconds
-- Peak PHP memory: 4 MB
-- Batch size: 1,000
-- Storage: SQLite
-- Rejected records: 0
+**Naive approach** — a single PHP script with sequential processing, simplified validation and one database transaction.
+
+**Modular approach** — a structured ETL pipeline with validation, batch processing, checkpoints, logging and reconciliation.
+
+### Usage
+
+```bash
+# Naive implementation
+php -d memory_limit=128M naive.php
+
+# Modular implementation (fresh database required for full import)
+php -d memory_limit=128M bin/console app:import data/pp-2021.csv --batch-size=1000
+```
+
+### Performance
+
+| Metric | Naive | Modular |
+|---|---|---|
+| Records | 1,281,983 | 1,281,983 |
+| Duration | 4.28 s | 9.05 s |
+| Peak PHP memory | 2 MB | 4 MB |
+| Checkpoint recovery | No | Yes |
+| Structured logging | No | Yes |
+
+## Limitations
+
+- Reconciliation validates record counts and total prices, not individual records.
+- Checkpoints support resuming imports of unchanged source files, but overlapping records across different files are not handled automatically.
+- Rejected records are counted but not persisted with their reasons.
+- The naive implementation recreates its output table on each run.
+
+## AI Assistance
+
+AI tools were used for architecture discussions, code suggestions and documentation. The implementation was reviewed and tested locally.
