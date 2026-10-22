@@ -66,7 +66,7 @@ final class ImportCommand extends Command
             'batch_size' => $batchSize,
         ]);
 
-        $startedAt = microtime(true);
+//        $startedAt = microtime(true);
 
         try {
             $dbPath = dirname(__DIR__, 2) . '/data/properties.sqlite';
